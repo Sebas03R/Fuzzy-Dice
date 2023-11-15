@@ -11,7 +11,6 @@ namespace WinFormsApp1
         {
             InitializeComponent();
 
-            // Asignar eventos de KeyPress a los TextBoxes
             textBox1.KeyPress += new KeyPressEventHandler(textBox1_KeyPress);
             textBox6.KeyPress += new KeyPressEventHandler(textBox6_KeyPress);
             textBox7.KeyPress += new KeyPressEventHandler(textBox7_KeyPress);
@@ -32,7 +31,6 @@ namespace WinFormsApp1
         {
             if (checkBox1.Checked)
             {
-                // Multiplicar el valor de textBox6 por 6.25 y mostrar el resultado en richTextBox1
                 if (double.TryParse(textBox6.Text, out double cantidadDados))
                 {
                     double resultado = cantidadDados * 6.25;
@@ -85,10 +83,8 @@ namespace WinFormsApp1
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            // Verificar si la casilla de verificación está marcada
             if (checkBox1.Checked)
             {
-                // Multiplicar el valor de textBox6 por 6.25 y mostrar el resultado en richTextBox1
                 if (double.TryParse(textBox6.Text, out double cantidadDados))
                 {
                     double resultado = cantidadDados * 6.25;
@@ -97,7 +93,7 @@ namespace WinFormsApp1
             }
             else
             {
-                richTextBox1.Text = string.Empty; // Limpiar richTextBox1 si la casilla no está marcada
+                richTextBox1.Text = string.Empty;
             }
         }
 
@@ -110,27 +106,23 @@ namespace WinFormsApp1
                 return;
             }
 
-            // Obtener los resultados de richTextBox1, richTextBox2 y richTextBox3
             double resultadoRichTextBox1, resultadoRichTextBox2, resultadoRichTextBox3;
 
             if (double.TryParse(richTextBox1.Text.Replace("$", ""), out resultadoRichTextBox1) &&
                 double.TryParse(richTextBox2.Text.Replace("$", ""), out resultadoRichTextBox2) &&
                 double.TryParse(richTextBox3.Text.Replace("$", ""), out resultadoRichTextBox3))
             {
-                // Sumar los resultados
                 double totalResultados = resultadoRichTextBox1 + resultadoRichTextBox2 + resultadoRichTextBox3;
 
-                // Calcular impuestos
                 double impuestos = totalResultados * TasaImpuestos;
 
-                // Calcular descuento por pedido mayor a $500
                 double descuento = 0.0;
                 if (totalResultados > 500)
                 {
                     descuento = totalResultados * DescuentoPorPedidoMayor500;
                 }
 
-                // Aplicar cargos de envío si es necesario
+                // Aplicar cargos de envÃ­o si es necesario
                 double totalConEnvio = totalResultados;
                 int cantidadTotalDados = int.Parse(textBox6.Text) + int.Parse(textBox7.Text) + int.Parse(textBox8.Text);
 
@@ -139,24 +131,18 @@ namespace WinFormsApp1
                     totalConEnvio += CargosEnvio;
                 }
 
-                // Calcular el total final
                 double totalFinal = totalResultados + impuestos - descuento + (totalConEnvio - totalResultados);
 
-                // Mostrar el resultado en richTextBox4 con dos decimales
                 richTextBox4.Text = $"{totalFinal:C2}";
 
-                // Calcular el 5% de impuestos del total y mostrar en richTextBox5 con dos decimales
                 double impuestos5Porciento = totalFinal * TasaImpuestos;
                 richTextBox5.Text = $"{impuestos5Porciento:C2}";
 
-                // Calcular el costo de envío y mostrar en richTextBox6 con dos decimales
                 double costoEnvio = cantidadTotalDados > LimiteEnvioGratis ? 0.0 : CargosEnvio;
                 richTextBox6.Text = $"{costoEnvio:C2}";
 
-                // Mostrar la cantidad total de descuento en richTextBox7 con dos decimales
                 richTextBox7.Text = $"{descuento:C2}";
 
-                // Mostrar el total de todo más el descuento en richTextBox8 con dos decimales
                 double totalConDescuento = totalFinal - descuento;
                 richTextBox8.Text = $"{totalConDescuento:C2}";
             }
@@ -168,10 +154,8 @@ namespace WinFormsApp1
 
             private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            // Verificar si la casilla de verificación está marcada
             if (checkBox1.Checked)
             {
-                // Multiplicar el valor de textBox6 por 6.25 y mostrar el resultado en richTextBox1
                 if (double.TryParse(textBox6.Text, out double cantidadDados))
                 {
                     double resultado = cantidadDados * 5.00;
@@ -180,7 +164,7 @@ namespace WinFormsApp1
             }
             else
             {
-                richTextBox1.Text = string.Empty; // Limpiar richTextBox1 si la casilla no está marcada
+                richTextBox1.Text = string.Empty;
             }
         }
 
@@ -188,7 +172,6 @@ namespace WinFormsApp1
         {
             if (checkBox2.Checked)
             {
-                // Multiplicar el valor de textBox6 por 6.25 y mostrar el resultado en richTextBox1
                 if (double.TryParse(textBox7.Text, out double cantidadDados))
                 {
                     double resultado = cantidadDados * 5.00;
@@ -199,7 +182,6 @@ namespace WinFormsApp1
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            // Verificar si la casilla de verificación está marcada
             if (checkBox3.Checked)
             {
                 // Multiplicar el valor de textBox6 por 6.25 y mostrar el resultado en richTextBox1
@@ -211,7 +193,7 @@ namespace WinFormsApp1
             }
             else
             {
-                richTextBox1.Text = string.Empty; // Limpiar richTextBox1 si la casilla no está marcada
+                richTextBox1.Text = string.Empty; 
             }
         }
 
@@ -219,7 +201,6 @@ namespace WinFormsApp1
         {
             if (checkBox2.Checked)
             {
-                // Multiplicar el valor de textBox6 por 6.25 y mostrar el resultado en richTextBox1
                 if (double.TryParse(textBox8.Text, out double cantidadDados))
                 {
                     double resultado = cantidadDados * 7.50;
